@@ -1,0 +1,9 @@
+list=`ps -eo ppid,stat | grep Z`
+for n in $list; do
+if (( n != Z )); then
+	p=`ps $n`
+	if !(( $? )); then
+		`kill $n`
+	fi
+fi
+done
